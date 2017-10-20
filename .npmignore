@@ -1,7 +1,8 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+# This should *almost* match .gitignore
+# The one exception is we want to include the lib-dist/ directory in the
+# package, but exclude it from the repository
 
 # compiled output
-/lib-dist
 /tmp
 /out-tsc
 
