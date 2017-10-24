@@ -7,7 +7,7 @@
   "scripts": {
     "build:library": "nglb --rootDir src/lib --outDir lib-dist --tsconfig tsconfig.lib.json",
     "test": "karma start --single-run",
-    "lint": "ng lint",
+    "lint": "ng lint --type-check",
     "e2e": "ng e2e"
   },
   "private": true,
