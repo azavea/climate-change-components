@@ -1,7 +1,11 @@
 {
   "name": "climate-change-components",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "Apache-2.0",
+  "repository" : {
+      "type" : "git",
+      "url" : "https://github.com/azavea/climate-change-components.git"
+  },
   "main": "./lib-dist/public_api.js",
   "types": "./lib-dist/public_api.d.js",
   "scripts": {
@@ -10,7 +14,6 @@
     "lint": "ng lint --type-check",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^4.3.6",
     "@angular/common": "^4.3.6",
