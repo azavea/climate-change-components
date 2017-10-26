@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+ - 6
+
+script:
+ - yarn run lint
+ - yarn run test
+ - yarn run build:library
+
+deploy:
+  skip_cleanup: true
+  provider: npm
+  email: systems@azavea.com
+  api_key:
+    secure: "fm5HR+cDC8GTTVViuHY41jMOKQLfYQBONorT7veLkWLbnGYyw0ds1ei+BY+NK/hpFMrmBZkLVOCagBqmlhOhWl0y35Zw7Da53daxIRyqYz8yH84yGIacJhct03LJFCUjsCfyUUogBCh2IqZvmhGeeeIc+0XNC85ub6z32YBMaPW9POLn4ULOuSQ3qoyiOozvQnURoAKnoXQahXEk6sA3RWPAwUMUslcpzpXX+JXXdUl6pY7ncfZnJ4igIZCCyTlhQbmBwpr9E+wbPu92Feod2KGUMKK4B4gK8gFFh0FCOmHlN/6Uu8lffnyzxpN4cGzJUpA77ae5Qau5LjwQfBYf/h9Oyeutn/f+m5SJK8CdqbcaXGzBO4R1BaWQHumbx7fDym1If9mutGWywy+xp73lAtUNTAMJXegDt2RY9rCfFtJ2Fq5yjIgGkkCN+YluS/ugXZBQAMAT210llhaUQdWVuziZ3j825R7V0vcCX+oLZwT0191N1EiU/wZQhUd7icLY2ZfmQD53w0bgKil5rIAEvSKjrRC4aiun7pG3NQUr9LnB/tzLGfrsoN8ASVwU/qWfq6kbPQ7oCEPlWjyg9THQarT2T3pDE7Tp520qNWB26wkxc8RXnGwdB28YD7KpuFRtR/uboUkhgqa+Ab0qwDw0YNJntD9PkXkRWGiKSxLTQiE="
+  on:
+    tags: true
+
+repo: azavea/climate-change-components
