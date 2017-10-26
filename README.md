@@ -18,6 +18,12 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
+## Publishing new versions
+
+Publishing a new version to NPM is handled by Travis CI when tags are pushed to Github.
+
+Make sure to update the version number in `package.json` before creating a new tag.
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
