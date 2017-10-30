@@ -1,4 +1,4 @@
 
-export * from './modules/api/api.module';
-export * from './modules/charts/charts.module';
-export * from './modules/shared/extra-params.constants';
+export * from './modules/api';
+export * from './modules/charts';
+export * from './modules/shared';

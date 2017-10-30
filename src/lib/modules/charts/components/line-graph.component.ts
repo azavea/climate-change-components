@@ -8,7 +8,7 @@ import {
   AfterContentInit
 } from '@angular/core';
 
-import { ChartData, ChartService, DataPoint, Indicator } from '../../api/api.module';
+import { ChartData, ChartService, DataPoint, Indicator } from '../../api';
 import * as D3 from 'd3';
 import * as _ from 'lodash';
 import * as $ from 'jquery';

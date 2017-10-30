@@ -15,5 +15,3 @@ import { LineGraphComponent } from './components/line-graph.component';
   ]
 })
 export class ChartsModule {}
-
-export { LineGraphComponent } from './components/line-graph.component';
