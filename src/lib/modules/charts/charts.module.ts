@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LineGraphComponent } from './components/line-graph.component';
+import { LineGraphComponent } from './components/line-graph/line-graph.component';
 
 @NgModule({
   imports: [
