@@ -8,9 +8,15 @@ import {
   AfterContentInit
 } from '@angular/core';
 
-import { ChartData, ChartService, DataPoint, Indicator } from '../../../api';
+import {
+  ChartData,
+  ChartService,
+  DataPoint,
+  Indicator,
+  MultiDataPoint
+} from '../../../../public_api';
 import * as D3 from 'd3';
-import * as _ from 'lodash';
+import * as cloneDeep from 'lodash.clonedeep';
 import * as $ from 'jquery';
 
 /*
@@ -30,7 +36,7 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
   @Input() public hover: Boolean;
   @Input() public unit: string;
 
-  public extractedData: Array<DataPoint>;
+  public extractedData: Array<MultiDataPoint>;
 
   private host;                          // D3 object referebcing host dom object
   private svg;                           // SVG in which we will print our chart
@@ -100,8 +106,11 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
 
   private filterData(): void {
       // Preserves parent data by fresh copying indicator data that will undergo processing
-      _.has(this.data[0], 'data') ?
-          this.extractedData = _.cloneDeep(this.data[0]['data']) : this.extractedData = [];
+      if (this.data && this.data[0] && this.data[0].data) {
+          this.extractedData = cloneDeep(this.data[0]['data']);
+      } else {
+          this.extractedData = [];
+      }
       // Remove empty day in non-leap years (affects only daily data)
       if (this.extractedData[365] && this.extractedData[365]['date'] == null) {
           this.extractedData.pop();
@@ -135,14 +144,14 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
       // Sort data by date ascending
       this.extractedData.sort(function(a, b) { return +a.date - +b.date; });
       // Parse out avg data for ease of use later
-      this.yData = _.map(this.extractedData, d => d.values.avg);
+      this.yData = this.extractedData.map(d => d.values.avg);
 
       this.xRange = D3.extent(this.extractedData, d => d.date);
       this.xScale.domain(this.xRange);
 
       // Adjust y scale, prettify graph
-      const minY = D3.min(_.map(this.extractedData, d => d.values.min));
-      const maxY = D3.max(_.map(this.extractedData, d => d.values.max));
+      const minY = D3.min(this.extractedData.map(d => d.values.min));
+      const maxY = D3.max(this.extractedData.map(d => d.values.max));
       // Note: 5 as default is arbitrary
       const yPad = (maxY - minY) > 0 ? (maxY - minY) * 1 / 3 : 5;
       // if minY is 0, keep it that way
@@ -204,7 +213,7 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
 
   /* Draw line */
   private drawAvgLine(): void {
-      const data = _.map(this.extractedData, d => ({'date': d.date, 'value': d.values.avg }));
+      const data = this.extractedData.map(d => ({'date': d.date, 'value': d.values.avg }));
       this.drawLine(data, 'line');
   }
 
@@ -214,9 +223,9 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
           .y0(d => this.yScale(d.min))
           .y1(d => this.yScale(d.max));
 
-      const minMaxData = _.map(this.extractedData, d => ({'date': d.date,
-                                                        'min': d.values.min,
-                                                        'max': d.values.max}));
+      const minMaxData = this.extractedData.map(d => ({'date': d.date,
+                                                       'min': d.values.min,
+                                                       'max': d.values.max}));
 
       // Draw min/max area
       this.svg.append('path')
