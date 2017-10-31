@@ -1,0 +1,9 @@
+<div class="dropdown button-group">
+  <button class="button"
+          *ngFor="let s of datasets"
+          [disabled]="!checkValidDataset(s)"
+          [ngClass]="{'active': s.name === dataset.name}"
+          (click)="onDatasetClicked(s, $event)">
+    {{ s.name }}
+  </button>
+</div>
