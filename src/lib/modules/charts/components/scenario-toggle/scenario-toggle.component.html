@@ -1,0 +1,8 @@
+<div class="dropdown button-group">
+  <button class="button"
+          *ngFor="let s of scenarios"
+          [ngClass]="{'active': s.name === scenario.name}"
+          (click)="onScenarioClicked(s, $event)">
+    {{ s.label }}
+  </button>
+</div>

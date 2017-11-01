@@ -9,6 +9,7 @@ import {
 import { DatasetToggleComponent } from './components/dataset-toggle/dataset-toggle.component';
 import { LineGraphComponent } from './components/line-graph/line-graph.component';
 import { ModelModalComponent } from './components/model-modal/model-modal.component';
+import { ScenarioToggleComponent } from './components/scenario-toggle/scenario-toggle.component';
 
 @NgModule({
   imports: [
@@ -19,12 +20,14 @@ import { ModelModalComponent } from './components/model-modal/model-modal.compon
   declarations: [
     DatasetToggleComponent,
     LineGraphComponent,
-    ModelModalComponent
+    ModelModalComponent,
+    ScenarioToggleComponent
   ],
   exports: [
     DatasetToggleComponent,
     LineGraphComponent,
-    ModelModalComponent
+    ModelModalComponent,
+    ScenarioToggleComponent
   ]
 })
 export class ChartsModule {}
