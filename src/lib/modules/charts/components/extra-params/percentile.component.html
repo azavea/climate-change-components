@@ -1,0 +1,13 @@
+<div class="chart-options-group percentile">
+    <form [formGroup]="percentileForm" novalidate>
+        <div class="chart-options-body form-group">
+            <span class="optional-parameters-label">Show {{indicator.label | lowercase}} at percentile
+                <input type="number"
+                       min="1"
+                       max="100"
+                       step="1"
+                       formControlName="percentileCtl">
+            of projections.</span>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+<div class="chart-options-group threshold">
+    <form [formGroup]="thresholdForm" novalidate>
+        <div class="chart-options-body form-group">
+            <span class="optional-parameters-label">Show days where {{indicator.label | lowercase}} is </span>
+            <select class="form-control chart-options-group" formControlName="comparatorCtl">
+                <option *ngFor="let comp of comparators"
+                    [value]="comp.key">{{comp.label}}
+                </option>
+            </select>
+            <div class="chart-options-group">
+                <input type="number"
+                    formControlName="thresholdCtl">
+            </div>
+            <select class="form-control chart-options-group" formControlName="thresholdUnitCtl">
+                <option *ngFor="let unit of thresholdUnits"
+                    [value]="unit.key">{{unit.label}}
+                </option>
+            </select>
+        </div>
+    </form>
+</div>
