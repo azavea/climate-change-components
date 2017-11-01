@@ -8,13 +8,12 @@ import {
   AfterContentInit
 } from '@angular/core';
 
-import {
-  ChartData,
-  ChartService,
-  DataPoint,
-  Indicator,
-  MultiDataPoint
-} from '../../../../public_api';
+import { ChartData } from '../../../api/models/chart-data.model';
+import { ChartService } from '../../../api/services/chart.service';
+import { DataPoint } from '../../../api/models/data-point.model';
+import { Indicator } from '../../../api/models/indicator.model';
+import { MultiDataPoint } from '../../../api/models/multi-data-point.model';
+
 import * as D3 from 'd3';
 import * as cloneDeep from 'lodash.clonedeep';
 import * as $ from 'jquery';

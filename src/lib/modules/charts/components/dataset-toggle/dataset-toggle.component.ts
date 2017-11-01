@@ -1,6 +1,9 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { City, ClimateModel, Dataset, DatasetService } from '../../../../public_api';
+import { City } from '../../../api/models/city.model';
+import { ClimateModel } from '../../../api/models/climate-model.model';
+import { Dataset } from '../../../api/models/dataset.model';
+import { DatasetService } from '../../../api/services/dataset.service';
 
 /*  Dataset Toggle Component
 

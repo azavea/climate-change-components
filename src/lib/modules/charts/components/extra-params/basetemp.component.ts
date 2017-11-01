@@ -1,7 +1,9 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { BasetempIndicatorQueryParams, Indicator, TemperatureUnits } from '../../../../public_api';
+import { BasetempIndicatorQueryParams } from '../../../api/models/basetemp-indicator-query-params.model';
+import { Indicator } from '../../../api/models/indicator.model';
+import { TemperatureUnits } from '../../../shared/extra-params.constants';
 
 /*
  * Basetemp params component

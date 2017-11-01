@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ClimateModel, ClimateModelService, Dataset } from '../../../../public_api';
+import { ClimateModel } from '../../../api/models/climate-model.model';
+import { ClimateModelService } from '../../../api/services/climate-model.service';
+import { Dataset } from '../../../api/models/dataset.model';
 
 /*  Model Modal Component
     -- Requires input for selected dataset and models

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import { Scenario, ScenarioService } from '../../../../public_api';
+import { Scenario } from '../../../api/models/scenario.model';
+import { ScenarioService } from '../../../api/services/scenario.service';
 
 /*  Scenario Toggle Component
 

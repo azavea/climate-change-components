@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Indicator, PercentileIndicatorQueryParams } from '../../../../public_api';
-
+import { Indicator } from '../../../api/models/indicator.model';
+import { PercentileIndicatorQueryParams } from '../../../api/models/percentile-indicator-query-params.model';
 /*
  * Percentile params component
  * Uni-field form to allow user to specify the percentile params
