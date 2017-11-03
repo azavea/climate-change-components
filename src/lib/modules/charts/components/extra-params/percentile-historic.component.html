@@ -1,0 +1,20 @@
+<div class="chart-options-group historic percentile">
+    <form [formGroup]="percentileHistoricForm" novalidate>
+        <div class="chart-options-body form-group">
+            <span class="optional-parameters-label">Show {{indicator.label | lowercase}} at percentile
+                <input type="number"
+                       min="1"
+                       max="100"
+                       step="1"
+                       formControlName="percentileCtl">
+            with historic base range year</span>
+            <div class="chart-options-group">
+                <select class="form-control chart-options-group" formControlName="historicCtl">
+                    <option *ngFor="let startYear of historicRangeOptions"
+                        [value]="startYear">{{startYear}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>

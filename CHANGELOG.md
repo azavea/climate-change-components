@@ -6,12 +6,19 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.1] - 2017-11-03
+### Added
+- PercentileHistoricComponent, which controls both historic range and percentile extra parameters
+
+### Changed
+- Precipitation threshold units, which are now rates in the API
+
 ## [0.2.0] - 2017-11-03
 ### Added
-- ChartsModule which exports components useful for creating time series charts via the Climate API
+- ChartsModule, which exports components useful for creating time series charts via the Climate API
 - CHANGELOG
 
 ## [0.1.0] - 2017-10-26
 ### Added
 - Initial Release
-- ApiModule which exports a public interface for using the Climate API in Angular
+- ApiModule, which exports a public interface for using the Climate API in Angular

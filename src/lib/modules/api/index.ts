@@ -16,6 +16,7 @@ export { IndicatorRequestOpts } from './models/indicator-request-opts.model';
 export { Indicator } from './models/indicator.model';
 export { MultiDataPoint } from './models/multi-data-point.model';
 export { PercentileIndicatorQueryParams } from './models/percentile-indicator-query-params.model';
+export { PercentileHistoricIndicatorQueryParams } from './models/percentile-historic-indicator-query-params.model';
 export { Scenario } from './models/scenario.model';
 export { ThresholdIndicatorQueryParams } from './models/threshold-indicator-query-params.model';
 export { TimeAggParam } from './models/time-agg-param.enum';

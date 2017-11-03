@@ -8,6 +8,8 @@ Run `ng generate component component-name` to generate a new component. You can 
 
 ## Build
 
+First run `yarn install` to install dependencies.
+
 Run `yarn run build:library` to build the project. The build artifacts will be stored in the `lib-dist/` directory. Use the `npm pack` to produce a tarball that can be installed using `npm install` or published with `npm publish`.
 
 ## Running unit tests
