@@ -1,2 +1,10 @@
 
-export * from './extra-params.constants';
+export {
+  PrecipitationUnits,
+  TemperatureUnits,
+  hasExtraParams,
+  isBasetempIndicator,
+  isHistoricIndicator,
+  isPercentileIndicator,
+  isThresholdIndicator
+} from './extra-params.constants';
