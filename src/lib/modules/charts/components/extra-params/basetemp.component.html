@@ -1,0 +1,17 @@
+<div class="chart-options-group basetemp">
+    <form [formGroup]="basetempForm" novalidate>
+        <div class="chart-options-body form-group">
+            <span class="optional-parameters-label">Show {{indicator.label | lowercase}} with base temperature</span>
+                <div class="chart-options-group">
+                    <input type="number"
+                           step="1"
+                           formControlName="basetempCtl">
+                </div>
+                <select class="form-control chart-options-group" formControlName="basetempUnitCtl">
+                    <option *ngFor="let unit of temperatureUnits"
+                        [value]="unit.key">{{unit.label}}
+                    </option>
+                </select>
+        </div>
+    </form>
+</div>

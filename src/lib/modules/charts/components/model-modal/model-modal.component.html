@@ -1,0 +1,51 @@
+<div class="dropdown dropdown-model">
+  <button class="button" type="button" data-target="#modelOptions"
+    aria-haspopup="true" aria-expanded="true"
+    (click)="smModal.show()">
+    {{ buttonText }}
+  </button>
+</div>
+<div class="modal modal-small fade"
+     id="modelOptions"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="modelOptions"
+     aria-hidden="true"
+     bsModal #smModal="bs-modal"
+     [config]="{backdrop: 'static'}"
+     (onShow)="modalShow()"
+     (onHide)="modalHide()">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h4 class="modal-title">Select Models</h4>
+        <div class="modal-actions">
+          <button class="button" type="button" (click)="selectAllClimateModels()">
+            Use all models
+          </button>
+          <button class="button" type="button" (click)="clearClimateModels()">
+            Clear all models
+          </button>
+        </div>
+        <div class="models">
+          <div *ngFor="let climateModel of climateModels">
+            <label>
+              <input type="checkbox"
+                     name="modelCheckbox"
+                     value="value"
+                     [disabled]="!climateModel.enabled"
+                     [(ngModel)]="climateModel.selected">
+              {{ climateModel.name }}
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+                class="button button-primary"
+                (click)="smModal.hide();"
+                [disabled]="isModalUpdateButtonDisabled()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
