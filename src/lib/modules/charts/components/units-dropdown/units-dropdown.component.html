@@ -1,0 +1,18 @@
+<div dropdown class="dropdown dropdown-units">
+  <button
+      dropdownToggle
+      class="button dropdown-toggle"
+      id="unitsDropdown"
+      type="button"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="true">
+    {{ unit || 'N/A' }}
+    <i class="caret"></i>
+  </button>
+  <ul *dropdownMenu class="dropdown-menu" aria-labelledby="unitsDropdown">
+    <li *ngFor="let unit of units">
+      <a (click)="onUnitSelected(unit)" placement="bottom">{{ unit }}</a>
+    </li>
+  </ul>
+</div>
