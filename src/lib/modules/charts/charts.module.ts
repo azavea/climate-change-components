@@ -16,6 +16,7 @@ import {
   BasetempComponent,
   HistoricComponent,
   PercentileComponent,
+  PercentileHistoricComponent,
   ThresholdComponent
 } from './components/extra-params';
 
@@ -34,6 +35,7 @@ import {
     LineGraphComponent,
     ModelModalComponent,
     PercentileComponent,
+    PercentileHistoricComponent,
     ScenarioToggleComponent,
     ThresholdComponent,
     UnitsDropdownComponent
@@ -45,6 +47,7 @@ import {
     LineGraphComponent,
     ModelModalComponent,
     PercentileComponent,
+    PercentileHistoricComponent,
     ScenarioToggleComponent,
     ThresholdComponent,
     UnitsDropdownComponent
