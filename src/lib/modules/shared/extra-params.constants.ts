@@ -37,9 +37,9 @@ export const TemperatureUnits: any[] = [
  ];
 
 export const PrecipitationUnits: any[] = [
-    {'key': 'mm', 'label': 'millimeters'},
-    {'key': 'in', 'label': 'inches'},
-    {'key': 'kg/m^2', 'label': 'kg/m^2'}
+    {'key': 'mm/day', 'label': 'millimeters per day'},
+     {'key': 'in/day', 'label': 'inches per day'},
+     {'key': 'kg/m^2/s', 'label': 'kg/m^2/s'}
 ];
 
 export function isBasetempIndicator(indicatorName: string): boolean {
@@ -52,11 +52,6 @@ export function isHistoricIndicator(indicatorName: string): boolean {
 
 export function isThresholdIndicator(indicatorName: string): boolean {
     return thresholdIndicatorNames.indexOf(indicatorName) !== -1;
-}
-
-// TODO: use or remove this function
-export function hasExtraParams(indicatorName: string): boolean {
-    return extraParamsIndicatorNames.indexOf(indicatorName) !== -1;
 }
 
 export function isPercentileIndicator(indicatorName: string): boolean {

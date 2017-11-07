@@ -2,7 +2,6 @@
 export {
   PrecipitationUnits,
   TemperatureUnits,
-  hasExtraParams,
   isBasetempIndicator,
   isHistoricIndicator,
   isPercentileIndicator,
