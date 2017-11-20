@@ -15,6 +15,7 @@ export { IndicatorQueryParams } from './models/indicator-query-params.model';
 export { IndicatorRequestOpts } from './models/indicator-request-opts.model';
 export { Indicator } from './models/indicator.model';
 export { MultiDataPoint } from './models/multi-data-point.model';
+export { HistoricPercentileParam, HistoricPercentileParamOptions } from './models/historic-percentile-param.enum';
 export { PercentileIndicatorQueryParams } from './models/percentile-indicator-query-params.model';
 export { PercentileHistoricIndicatorQueryParams } from './models/percentile-historic-indicator-query-params.model';
 export { Scenario } from './models/scenario.model';

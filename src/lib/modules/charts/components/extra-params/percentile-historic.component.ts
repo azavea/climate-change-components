@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { HistoricRange } from '../../../api/models/historic-range.model';
 import { PercentileHistoricIndicatorQueryParams } from '../../../api/models/percentile-historic-indicator-query-params.model';
+import { HistoricPercentileParam, HistoricPercentileParamOptions } from '../../../api/models/historic-percentile-param.enum';
 import { HistoricRangeService } from '../../../api/services/historic-range.service';
 import { Indicator } from '../../../api/models/indicator.model';
 
@@ -21,10 +22,9 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
     @Output() percentileHistoricParamSelected = new EventEmitter<PercentileHistoricIndicatorQueryParams>();
 
     percentileHistoricForm: FormGroup;
-    public historicRangeOptions: number[] = [];
 
-    // default form values
-    private defaultPercentile = 50;
+    public historicRangeOptions: number[] = [];
+    public percentileOptions = HistoricPercentileParamOptions;
 
     constructor(private formBuilder: FormBuilder,
                 private historicRangeService: HistoricRangeService) {}
@@ -47,7 +47,7 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
     createForm() {
         this.percentileHistoricForm = this.formBuilder.group({
             historicCtl: [this.extraParams.historic_range],
-            percentileCtl: [this.extraParams.percentile || this.defaultPercentile, Validators.required]
+            percentileCtl: [this.extraParams.percentile || HistoricPercentileParam.NinetyFive]
         });
 
         this.percentileHistoricForm.valueChanges.debounceTime(700).subscribe(form => {
