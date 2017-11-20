@@ -9,7 +9,7 @@ export { ClimateModel } from './models/climate-model.model';
 export { DataPoint } from './models/data-point.model';
 export { Dataset } from './models/dataset.model';
 export { HistoricIndicatorQueryParams } from './models/historic-indicator-query-params.model';
-export { HistoricRange } from './models/historic-range.model';
+export { HistoricRange, HISTORIC_RANGE_DEFAULT } from './models/historic-range.model';
 export { IndicatorParameter } from './models/indicator-parameter.model';
 export { IndicatorQueryParams } from './models/indicator-query-params.model';
 export { IndicatorRequestOpts } from './models/indicator-request-opts.model';
