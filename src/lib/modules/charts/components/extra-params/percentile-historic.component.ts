@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { HistoricRange, HISTORIC_RANGE_DEFAULT } from '../../../api/models/historic-range.model';
+import { HistoricRange } from '../../../api/models/historic-range.model';
 import { PercentileHistoricIndicatorQueryParams } from '../../../api/models/percentile-historic-indicator-query-params.model';
 import { HistoricRangeService } from '../../../api/services/historic-range.service';
 import { Indicator } from '../../../api/models/indicator.model';
@@ -21,7 +21,7 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
     @Output() percentileHistoricParamSelected = new EventEmitter<PercentileHistoricIndicatorQueryParams>();
 
     percentileHistoricForm: FormGroup;
-    public historicRangeOptions: string[] = [];
+    public historicRangeOptions: number[] = [];
 
     // default form values
     private defaultPercentile = 50;
@@ -46,7 +46,7 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
 
     createForm() {
         this.percentileHistoricForm = this.formBuilder.group({
-            historicCtl: [this.extraParams.historic_range || HISTORIC_RANGE_DEFAULT],
+            historicCtl: [this.extraParams.historic_range],
             percentileCtl: [this.extraParams.percentile || this.defaultPercentile, Validators.required]
         });
 
@@ -64,7 +64,14 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
 
     getHistoricRanges() {
         this.historicRangeService.list().subscribe(data => {
-            this.historicRangeOptions = data.map(h => h.start_year);
+            this.historicRangeOptions = data.map(h => parseInt(h.start_year, 10));
+            if (!this.extraParams.historic_range) {
+              const latestHistoricRange = Math.max(...this.historicRangeOptions);
+              this.percentileHistoricForm.setValue({
+                historicCtl: latestHistoricRange,
+                percentileCtl: this.percentileHistoricForm.controls.percentileCtl.value
+              });
+            }
         });
     }
 }
