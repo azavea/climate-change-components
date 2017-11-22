@@ -15,6 +15,7 @@ const historicIndicatorNames = [
     'heat_wave_duration_index',
     'heat_wave_incidents',
     'extreme_heat_events',
+    'extreme_cold_events',
     'extreme_precipitation_events'
 ];
 
@@ -23,6 +24,7 @@ const percentileIndicatorNames = [
     'percentile_low_temperature',
     'percentile_precipitation',
     'extreme_heat_events',
+    'extreme_cold_events',
     'extreme_precipitation_events'
 ];
 
