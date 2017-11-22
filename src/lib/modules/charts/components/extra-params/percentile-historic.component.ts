@@ -47,7 +47,9 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
     createForm() {
         this.percentileHistoricForm = this.formBuilder.group({
             historicCtl: [this.extraParams.historic_range],
-            percentileCtl: [this.extraParams.percentile || HistoricPercentileParam.NinetyFive]
+            percentileCtl: [
+              this.extraParams.percentile || this.defaultPercentileForIndicator(this.indicator)
+            ]
         });
 
         this.percentileHistoricForm.valueChanges.debounceTime(700).subscribe(form => {
@@ -73,5 +75,13 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
               });
             }
         });
+    }
+
+    private defaultPercentileForIndicator(indicator: Indicator) {
+      if (indicator.name === 'extreme_cold_events') {
+        return HistoricPercentileParam.One;
+      } else {
+        return HistoricPercentileParam.NinetyNine;
+      }
     }
 }
