@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.2]
+### Changed
+- HistoricPercentile extra param now limited to a list of dropdown choices: 1, 5, 95, 99
 - PercentileHistoricComponent and HistoricComponent now automatically choose a sensible dropdown
   default for the historic baseline parameter
+### Fixed
+- Extreme Cold Events is now properly classified as both a historic and percentile Indicator
 
 ## [0.2.1] - 2017-11-07
 ### Added
