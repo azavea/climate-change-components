@@ -21,10 +21,7 @@ export class HistoricComponent implements AfterViewInit, OnInit {
     @Output() historicParamSelected = new EventEmitter<HistoricIndicatorQueryParams>();
 
     historicForm: FormGroup;
-    public historicRangeOptions: string[] = [];
-
-    // default form values
-    private defaultHistoric = null;
+    public historicRangeOptions: number[] = [];
 
     constructor(private formBuilder: FormBuilder,
                 private historicRangeService: HistoricRangeService) {}
@@ -45,7 +42,7 @@ export class HistoricComponent implements AfterViewInit, OnInit {
 
     createForm() {
         this.historicForm = this.formBuilder.group({
-            historicCtl: [this.extraParams.historic_range || this.defaultHistoric],
+            historicCtl: [this.extraParams.historic_range],
         });
 
         this.historicForm.valueChanges.debounceTime(700).subscribe(form => {
@@ -57,9 +54,11 @@ export class HistoricComponent implements AfterViewInit, OnInit {
 
     getHistoricRanges() {
         this.historicRangeService.list().subscribe(data => {
-            this.historicRangeOptions = data.map(h => h.start_year);
-            // add empty option, as this is not a required parameter
-            this.historicRangeOptions.unshift('');
+            this.historicRangeOptions = data.map(h => parseInt(h.start_year, 10));
+            if (!this.extraParams.historic_range) {
+              const latestHistoricRange = Math.max(...this.historicRangeOptions);
+              this.historicForm.setValue({historicCtl: latestHistoricRange});
+            }
         });
     }
 }

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { HistoricRange } from '../../../api/models/historic-range.model';
 import { PercentileHistoricIndicatorQueryParams } from '../../../api/models/percentile-historic-indicator-query-params.model';
+import { HistoricPercentileParam, HistoricPercentileParamOptions } from '../../../api/models/historic-percentile-param.enum';
 import { HistoricRangeService } from '../../../api/services/historic-range.service';
 import { Indicator } from '../../../api/models/indicator.model';
 
@@ -21,11 +22,9 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
     @Output() percentileHistoricParamSelected = new EventEmitter<PercentileHistoricIndicatorQueryParams>();
 
     percentileHistoricForm: FormGroup;
-    public historicRangeOptions: string[] = [];
 
-    // default form values
-    private defaultHistoric = null;
-    private defaultPercentile = 50;
+    public historicRangeOptions: number[] = [];
+    public percentileOptions = HistoricPercentileParamOptions;
 
     constructor(private formBuilder: FormBuilder,
                 private historicRangeService: HistoricRangeService) {}
@@ -47,8 +46,10 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
 
     createForm() {
         this.percentileHistoricForm = this.formBuilder.group({
-            historicCtl: [this.extraParams.historic_range || this.defaultHistoric],
-            percentileCtl: [this.extraParams.percentile || this.defaultPercentile, Validators.required]
+            historicCtl: [this.extraParams.historic_range],
+            percentileCtl: [
+              this.extraParams.percentile || this.defaultPercentileForIndicator(this.indicator)
+            ]
         });
 
         this.percentileHistoricForm.valueChanges.debounceTime(700).subscribe(form => {
@@ -65,9 +66,22 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
 
     getHistoricRanges() {
         this.historicRangeService.list().subscribe(data => {
-            this.historicRangeOptions = data.map(h => h.start_year);
-            // add empty option, as this is not a required parameter
-            this.historicRangeOptions.unshift('');
+            this.historicRangeOptions = data.map(h => parseInt(h.start_year, 10));
+            if (!this.extraParams.historic_range) {
+              const latestHistoricRange = Math.max(...this.historicRangeOptions);
+              this.percentileHistoricForm.setValue({
+                historicCtl: latestHistoricRange,
+                percentileCtl: this.percentileHistoricForm.controls.percentileCtl.value
+              });
+            }
         });
+    }
+
+    private defaultPercentileForIndicator(indicator: Indicator) {
+      if (indicator.name === 'extreme_cold_events') {
+        return HistoricPercentileParam.One;
+      } else {
+        return HistoricPercentileParam.NinetyNine;
+      }
     }
 }
