@@ -8,8 +8,10 @@ import { ModalOptions } from 'ngx-bootstrap/modal';
 /*  Model Modal Component
     -- Requires input for selected dataset and models
     -- Emits selected model
+    -- Items passed to [config] input are merged with the component's DEFAULT_MODAL_OPTIONS
     Expected use:
         <ccc-model-modal
+            [config]="bsModalOptions"
             [dataset]="yourDataset"
             [models]="yourSelectedModels"
             (onModelsChanged)="modelsChanged($event)">
