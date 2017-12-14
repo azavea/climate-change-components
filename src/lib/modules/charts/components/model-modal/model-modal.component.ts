@@ -3,12 +3,15 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ClimateModel } from '../../../api/models/climate-model.model';
 import { ClimateModelService } from '../../../api/services/climate-model.service';
 import { Dataset } from '../../../api/models/dataset.model';
+import { ModalOptions } from 'ngx-bootstrap/modal';
 
 /*  Model Modal Component
     -- Requires input for selected dataset and models
     -- Emits selected model
+    -- Items passed to [config] input are merged with the component's DEFAULT_MODAL_OPTIONS
     Expected use:
         <ccc-model-modal
+            [config]="bsModalOptions"
             [dataset]="yourDataset"
             [models]="yourSelectedModels"
             (onModelsChanged)="modelsChanged($event)">
@@ -20,17 +23,23 @@ import { Dataset } from '../../../api/models/dataset.model';
 })
 export class ModelModalComponent implements OnInit {
 
+    @Input() config: ModalOptions;
     @Input() dataset: Dataset;
     @Input() models: ClimateModel[];
+
     @Output() onModelsChanged = new EventEmitter<ClimateModel[]>();
 
     public buttonText: string;
     public climateModels: ClimateModel[] = [];
     public smModal: any;
+    public readonly DEFAULT_MODAL_OPTIONS = { backdrop: 'static' };
+
+    private modalOptions: ModalOptions;
 
     constructor(private climateModelService: ClimateModelService) {}
 
     ngOnInit() {
+        this.modalOptions = Object.assign({}, this.DEFAULT_MODAL_OPTIONS, this.config);
         this.getClimateModels();
     }
 
