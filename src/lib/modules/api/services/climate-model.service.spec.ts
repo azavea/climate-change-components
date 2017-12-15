@@ -1,11 +1,13 @@
 import { Observable } from 'rxjs/Rx';
 
 import { ClimateModelService } from './climate-model.service';
+import { APICacheService } from './api-cache.service';
 
 
 describe('ClimateModelService', () => {
 
     let service: ClimateModelService;
+    let cache: APICacheService;
 
     let apiHttpStub: any;
 
@@ -18,7 +20,8 @@ describe('ClimateModelService', () => {
             get: jasmine.createSpy('get').and.returnValue(
                 Observable.of({json: () => testResponse}))
         };
-      service = new ClimateModelService('http://example.com', apiHttpStub);
+      cache = new APICacheService();
+      service = new ClimateModelService('http://example.com', apiHttpStub, cache);
     });
 
     it('should have a list method', () => {
