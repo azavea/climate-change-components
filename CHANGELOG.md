@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.2.3]
+### Added
+- The following services now use an in-memory cache for their `list()` methods to reduce network traffic:
+  - ClimateModelService
+  - DatasetService
+  - HistoricRangeService
+  - IndicatorService
+  - ScenarioService
+### Changed
+- A BsModalOptions configuration can now be passed to ModelModalComponent via the `[config]` binding
+
 ## [0.2.2]
 ### Changed
 - HistoricPercentile extra param now limited to a list of dropdown choices: 1, 5, 95, 99
