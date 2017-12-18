@@ -1,8 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { RequestOptions, URLSearchParams } from '@angular/http';
 import { Observable, Observer } from 'rxjs/Rx';
-import 'rxjs/add/observable/of';
-import 'rxjs/Rx';
 
 import { Indicator } from '../models/indicator.model';
 import { IndicatorRequestOpts } from '../models/indicator-request-opts.model';
