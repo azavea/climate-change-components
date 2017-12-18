@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
+## [0.2.4]
+### Fixed
+- Removed imports with side effects that could lead to a bug in type checking observables in the caching service implemented in 0.2.3
+
 ## [0.2.3]
 ### Added
 - The following services now use an in-memory cache for their `list()` methods to reduce network traffic:
