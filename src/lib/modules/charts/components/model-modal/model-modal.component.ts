@@ -31,10 +31,10 @@ export class ModelModalComponent implements OnInit {
 
     public buttonText: string;
     public climateModels: ClimateModel[] = [];
+    public modalOptions: ModalOptions;
     public smModal: any;
     public readonly DEFAULT_MODAL_OPTIONS = { backdrop: 'static' };
 
-    private modalOptions: ModalOptions;
 
     constructor(private climateModelService: ClimateModelService) {}
 
