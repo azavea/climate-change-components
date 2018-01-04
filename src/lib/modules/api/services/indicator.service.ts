@@ -86,7 +86,7 @@ export class IndicatorService {
     if (options.params.years) {
       searchParams.append('years', options.params.years.join(','));
     }
-    if (options.params.climateModels) {
+    if (options.params.climateModels && options.params.climateModels.length) {
       searchParams.append('models', options.params.climateModels.map(m => m.name).join(','));
     }
     if (options.params.time_aggregation) {
