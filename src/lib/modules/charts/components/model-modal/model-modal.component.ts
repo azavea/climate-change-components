@@ -1,12 +1,17 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 
 import { ClimateModel } from '../../../api/models/climate-model.model';
 import { ClimateModelService } from '../../../api/services/climate-model.service';
 import { Dataset } from '../../../api/models/dataset.model';
 import { ModalOptions } from 'ngx-bootstrap/modal';
-
-import * as cloneDeep from 'lodash.clonedeep';
-import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 /*  Model Modal Component
     -- Requires input for selected dataset and models
