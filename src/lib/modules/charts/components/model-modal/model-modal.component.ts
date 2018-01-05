@@ -1,9 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 
 import { ClimateModel } from '../../../api/models/climate-model.model';
 import { ClimateModelService } from '../../../api/services/climate-model.service';
 import { Dataset } from '../../../api/models/dataset.model';
 import { ModalOptions } from 'ngx-bootstrap/modal';
+
+import * as cloneDeep from 'lodash.clonedeep';
+import { SimpleChanges } from '@angular/core/src/metadata/lifecycle_hooks';
 
 /*  Model Modal Component
     -- Requires input for selected dataset and models
@@ -13,7 +16,6 @@ import { ModalOptions } from 'ngx-bootstrap/modal';
         <ccc-model-modal
             [config]="bsModalOptions"
             [dataset]="yourDataset"
-            [models]="yourSelectedModels"
             (onModelsChanged)="modelsChanged($event)">
 */
 
@@ -21,17 +23,17 @@ import { ModalOptions } from 'ngx-bootstrap/modal';
   selector: 'ccc-model-modal',
   templateUrl: './model-modal.component.html'
 })
-export class ModelModalComponent implements OnInit {
+export class ModelModalComponent implements OnInit, OnChanges {
 
     @Input() config: ModalOptions;
     @Input() dataset: Dataset;
-    @Input() models: ClimateModel[];
 
     @Output() onModelsChanged = new EventEmitter<ClimateModel[]>();
 
     public buttonText: string;
-    public climateModels: ClimateModel[] = [];
+    public climateModels: ClimateModel[];
     public modalOptions: ModalOptions;
+    public models: ClimateModel[];
     public smModal: any;
     public readonly DEFAULT_MODAL_OPTIONS = { backdrop: 'static' };
 
@@ -43,12 +45,16 @@ export class ModelModalComponent implements OnInit {
         this.getClimateModels();
     }
 
+    ngOnChanges(changes: SimpleChanges) {
+      this.updateClimateModels();
+    }
+
     // unselect all model checkboxes when option to use all models selected
     public clearClimateModels() {
         this.climateModels.forEach(model => model.selected = false);
     }
 
-    // disable models not valid for the project datset
+    // disable models not valid for the project dataset
     public disableClimateModels() {
         if (!this.dataset) {
             return;
@@ -67,14 +73,11 @@ export class ModelModalComponent implements OnInit {
     }
 
     public updateClimateModels() {
-        this.disableClimateModels();
-        this.models = this.filterSelectedClimateModels();
-        this.onModelsChanged.emit(this.models);
-        this.updateButtonText();
-    }
-
-    public modalShow() {
-        this.updateClimateModels();
+      if (!(this.climateModels && this.dataset)) { return; }
+      this.disableClimateModels();
+      this.models = this.filterSelectedClimateModels();
+      this.onModelsChanged.emit(this.models);
+      this.updateButtonText();
     }
 
     public modalHide() {
@@ -93,21 +96,7 @@ export class ModelModalComponent implements OnInit {
     private getClimateModels() {
         this.climateModelService.list().subscribe(data => {
             this.climateModels = data;
-
-            // Initialize 'selected' attributes with models in project
-            if (this.models.length === 0) {
-                this.selectAllClimateModels();
-            } else if (this.dataset) {
-                // dataset may be undefined for project if in form to create new project
-                this.models.forEach(projectModel => {
-                    this.climateModels.forEach(model => {
-                        if (projectModel.name === model.name) {
-                           model.selected = projectModel.selected;
-                        }
-                    });
-                });
-            }
-
+            this.selectAllClimateModels();
             this.updateClimateModels();
         });
     }
