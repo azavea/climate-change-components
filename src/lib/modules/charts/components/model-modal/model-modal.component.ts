@@ -75,6 +75,10 @@ export class ModelModalComponent implements OnInit {
         this.updateButtonText();
     }
 
+    public modalShow() {
+        this.updateClimateModels();
+    }
+
     public modalHide() {
         const models = this.filterSelectedClimateModels();
         if (models.length < 1) {
