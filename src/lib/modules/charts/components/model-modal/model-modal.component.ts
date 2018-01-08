@@ -30,7 +30,7 @@ export class ModelModalComponent implements OnInit {
     @Output() onModelsChanged = new EventEmitter<ClimateModel[]>();
 
     public buttonText: string;
-    public climateModels: ClimateModel[] = [];
+    public climateModels: ClimateModel[];
     public modalOptions: ModalOptions;
     public smModal: any;
     public readonly DEFAULT_MODAL_OPTIONS = { backdrop: 'static' };
@@ -48,7 +48,7 @@ export class ModelModalComponent implements OnInit {
         this.climateModels.forEach(model => model.selected = false);
     }
 
-    // disable models not valid for the project datset
+    // disable models not valid for the project dataset
     public disableClimateModels() {
         if (!this.dataset) {
             return;
@@ -67,14 +67,12 @@ export class ModelModalComponent implements OnInit {
     }
 
     public updateClimateModels() {
+        if (!(this.climateModels && this.dataset)) { return; }
+
         this.disableClimateModels();
         this.models = this.filterSelectedClimateModels();
         this.onModelsChanged.emit(this.models);
         this.updateButtonText();
-    }
-
-    public modalShow() {
-        this.updateClimateModels();
     }
 
     public modalHide() {
@@ -93,7 +91,6 @@ export class ModelModalComponent implements OnInit {
     private getClimateModels() {
         this.climateModelService.list().subscribe(data => {
             this.climateModels = data;
-
             // Initialize 'selected' attributes with models in project
             if (this.models.length === 0) {
                 this.selectAllClimateModels();
@@ -102,12 +99,11 @@ export class ModelModalComponent implements OnInit {
                 this.models.forEach(projectModel => {
                     this.climateModels.forEach(model => {
                         if (projectModel.name === model.name) {
-                           model.selected = projectModel.selected;
+                            model.selected = projectModel.selected;
                         }
                     });
                 });
             }
-
             this.updateClimateModels();
         });
     }
