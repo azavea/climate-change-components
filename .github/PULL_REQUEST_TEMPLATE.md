@@ -22,9 +22,10 @@ Optional. Ancillary topics, caveats, alternative strategies that didn't work out
  * Include test case, and expected output
 
 ## Checklist
-- [ ] `yarn run serve` clean?
-- [ ] `yarn run build:prod` clean?
 - [ ] `yarn run lint` clean?
+- [ ] `yarn run build:library` clean?
+- [ ] `npm pack` clean?
+- [ ] `CHANGELOG.md` updated?
 
 Closes|Fixes #XXX
 
