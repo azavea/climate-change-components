@@ -40,6 +40,7 @@ export class ModelModalComponent implements OnInit {
 
     ngOnInit() {
         this.modalOptions = Object.assign({}, this.DEFAULT_MODAL_OPTIONS, this.config);
+        this.climateModels = [];  // initialize with empty list while modal loads
         this.getClimateModels();
     }
 
