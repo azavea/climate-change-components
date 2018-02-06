@@ -2,7 +2,8 @@
   <button class="button"
           *ngFor="let s of scenarios"
           [ngClass]="{'active': s.name === scenario.name}"
-          (click)="onScenarioClicked(s, $event)">
-    {{ s.label }}
+          (click)="onScenarioClicked(s, $event)"
+          tooltip="{{ s.label }}">
+    {{ s.alias }}
   </button>
 </div>

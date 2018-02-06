@@ -4,7 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import {
   BsDropdownModule,
-  ModalModule
+  ModalModule,
+  TooltipModule
 } from 'ngx-bootstrap';
 
 import { DatasetToggleComponent } from './components/dataset-toggle/dataset-toggle.component';
@@ -26,7 +27,8 @@ import {
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   declarations: [
     BasetempComponent,
