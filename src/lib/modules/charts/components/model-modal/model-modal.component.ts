@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 import { ClimateModel } from '../../../api/models/climate-model.model';
 import { ClimateModelService } from '../../../api/services/climate-model.service';
 import { Dataset } from '../../../api/models/dataset.model';
-import { ModalOptions } from 'ngx-bootstrap/modal';
+import { ModalOptions, ModalDirective } from 'ngx-bootstrap/modal';
 
 /*  Model Modal Component
     -- Requires input for selected dataset and models
@@ -35,6 +35,7 @@ export class ModelModalComponent implements OnInit {
     public smModal: any;
     public readonly DEFAULT_MODAL_OPTIONS = { backdrop: 'static' };
 
+    @ViewChild(ModalDirective) modal: ModalDirective;
 
     constructor(private climateModelService: ClimateModelService) {}
 
@@ -80,12 +81,20 @@ export class ModelModalComponent implements OnInit {
         this.updateClimateModels();
     }
 
-    public modalHide() {
+    public updateModelSelection() {
+        this.hide();
+
         const models = this.filterSelectedClimateModels();
         if (models.length < 1) {
           this.selectAllClimateModels();
         }
         this.updateClimateModels();
+    }
+
+    public hide() {
+        if (this.modal) {
+            this.modal.hide();
+        }
     }
 
     private filterSelectedClimateModels() {
