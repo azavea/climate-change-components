@@ -13,7 +13,6 @@
      aria-hidden="true"
      bsModal #smModal="bs-modal"
      [config]="modalOptions"
-     (onHide)="modalHide()"
      (onShow)="modalShow()">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
@@ -43,7 +42,7 @@
       <div class="modal-footer">
         <button type="button"
                 class="button button-primary"
-                (click)="smModal.hide();"
+                (click)="updateModelSelection()"
                 [disabled]="isModalUpdateButtonDisabled()">Update</button>
       </div>
     </div>
