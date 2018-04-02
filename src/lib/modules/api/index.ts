@@ -24,6 +24,7 @@ export { TimeAggParam } from './models/time-agg-param.enum';
 
 export { ApiHttp } from './services/api-http.interface';
 
+export { APICacheService } from './services/api-cache.service';
 export { ChartService } from './services/chart.service';
 export { CityService } from './services/city.service';
 export { ClimateModelService } from './services/climate-model.service';
