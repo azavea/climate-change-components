@@ -270,12 +270,14 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
   }
 
   private redrawScrubber(event) {
-    let xPos = event.offsetX;
+    let xPos = event.offsetX - this.margin.left;
     // Firefox, IE & Edge handle event positioning differently than Chrome, Safari
     if (navigator) {
       const browser = navigator.userAgent.toLowerCase();
-      if (browser.indexOf('chrome') > -1 || browser.indexOf('safari') > -1) {
-        xPos = event.offsetX - this.margin.left;
+      if (browser.indexOf('trident') > -1 || // trident is the identifier for IE11
+          browser.indexOf('edge') > -1 ||
+          browser.indexOf('firefox') > -1) {
+        xPos = event.offsetX;
       }
     }
 
