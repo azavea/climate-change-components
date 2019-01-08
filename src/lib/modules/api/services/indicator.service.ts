@@ -5,7 +5,14 @@ import { Point } from 'geojson';
 
 import { City } from '../models/city.model';
 import { Indicator } from '../models/indicator.model';
-import { IndicatorRequestOpts } from '../models/indicator-request-opts.model';
+import {
+  IndicatorQueryParams,
+  IndicatorDistanceQueryParams,
+} from '../models/indicator-query-params.model';
+import {
+  IndicatorRequestOpts,
+  IndicatorDistanceRequestOpts,
+} from '../models/indicator-request-opts.model';
 import { ThresholdIndicatorQueryParams } from '../models/threshold-indicator-query-params.model';
 import { BasetempIndicatorQueryParams } from '../models/basetemp-indicator-query-params.model';
 import { HistoricIndicatorQueryParams } from '../models/historic-indicator-query-params.model';
@@ -39,7 +46,7 @@ export class IndicatorService {
     return this.makeDataRequest(url, options);
   }
 
-  public getDataForLatLon(point: Point, options: IndicatorRequestOpts) {
+  public getDataForLatLon(point: Point, options: IndicatorDistanceRequestOpts) {
     const url = `${this.apiHost}/api/climate-data/${point.coordinates[1]}/${point.coordinates[0]}/` +
                 `${options.scenario.name}/indicator/${options.indicator.name}/`;
     return this.makeDataRequest(url, options);
@@ -115,6 +122,11 @@ export class IndicatorService {
       searchParams.append('percentile', percentileOpts.percentile.toString());
     }
 
+    if (this.hasDistanceParam(options.params)) {
+      const distanceParams = options.params as IndicatorDistanceQueryParams;
+      searchParams.append('distance', distanceParams.distance.toString());
+    }
+
     if (options.params.years) {
       searchParams.append('years', options.params.years.join(','));
     }
@@ -132,5 +144,9 @@ export class IndicatorService {
     }
 
     return searchParams;
+  }
+
+  private hasDistanceParam(params: IndicatorQueryParams): params is IndicatorDistanceQueryParams {
+    return (params as IndicatorDistanceQueryParams).distance !== undefined;
   }
 }
