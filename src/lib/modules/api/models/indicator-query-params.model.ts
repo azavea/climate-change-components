@@ -9,3 +9,7 @@ export interface IndicatorQueryParams {
   agg?: string;
   unit?: string;
 }
+
+export interface IndicatorDistanceQueryParams extends IndicatorQueryParams {
+  distance?: number;
+}
