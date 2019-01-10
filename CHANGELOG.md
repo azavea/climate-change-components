@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [UNRELEASED]
 
+## [0.3.1]
+- Added new `...IndicatorDistanceQueryParams` types for providing an optional `distance: number` parameter for Lat/Lon climate data queries.
+
 ## [0.3.0]
 ### Breaking Change
 - IndicatorQueryOpts no longer contains the `city: City` property
