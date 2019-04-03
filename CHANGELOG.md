@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [UNRELEASED]
 
+## [0.4.0]
+### Added
+- Added `DataExportService` and `ImageDownloadService` to enable graph image downloads from Temperate.
+
 ## [0.3.1]
 - Added new `...IndicatorDistanceQueryParams` types for providing an optional `distance: number` parameter for Lat/Lon climate data queries.
 
