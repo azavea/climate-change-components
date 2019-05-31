@@ -20,7 +20,6 @@ export class ScenarioService {
   public list(): Observable<Scenario[]> {
     const url = this.apiHost + '/api/scenario/';
     const request = this.apiHttp.get(url);
-    const response = this.cache.get('climate.api.scenario.list', request);
-    return response.map(resp => resp.json() || [] as Scenario[]);
+    return this.cache.get('climate.api.scenario.list', request);
   }
 }

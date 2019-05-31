@@ -20,7 +20,6 @@ export class HistoricRangeService {
   public list(): Observable<HistoricRange[]> {
     const url = this.apiHost + '/api/historic-range/';
     const request = this.apiHttp.get(url);
-    const response = this.cache.get('climate.api.historicrange.list', request);
-    return response.map(resp => resp.json() || [] as HistoricRange[]);
+    return this.cache.get('climate.api.historicrange.list', request);
   }
 }

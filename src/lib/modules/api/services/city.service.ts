@@ -29,7 +29,7 @@ export class CityService {
 
     const requestOptions = new RequestOptions({ search: searchParams });
     return this.apiHttp.get(url, requestOptions)
-        .map(resp => resp.json().features || [] as City[]);
+        .map(resp => resp.features || [] as City[]);
   }
 
   public search(text: string): Observable<City[]> {
@@ -38,7 +38,7 @@ export class CityService {
     searchParams.append('search', text);
     const requestOptions = new RequestOptions({ search: searchParams });
     return this.apiHttp.get(url, requestOptions)
-        .map(response => response.json().features || [] as City[]);
+        .map(response => response.features || [] as City[]);
   }
 
 }

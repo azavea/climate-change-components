@@ -20,7 +20,6 @@ export class DatasetService {
   public list(): Observable<Dataset[]> {
     const url = this.apiHost + '/api/dataset/';
     const request = this.apiHttp.get(url);
-    const response = this.cache.get('climate.api.dataset.list', request);
-    return response.map(resp => resp.json() || [] as Dataset[]);
+    return this.cache.get('climate.api.dataset.list', request);
   }
 }

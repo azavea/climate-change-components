@@ -20,7 +20,6 @@ export class ClimateModelService {
   public list(): Observable<ClimateModel[]> {
     const url = this.apiHost + '/api/climate-model/';
     const request = this.apiHttp.get(url);
-    const response = this.cache.get('climate.api.climatemodel.list', request);
-    return response.map(resp => resp.json() || [] as ClimateModel[]);
+    return this.cache.get('climate.api.climatemodel.list', request);
   }
 }

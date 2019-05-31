@@ -1,10 +1,6 @@
 # Climate Change Components
 
-This project houses components, services and models for accessing the Azavea Climate API in an Angular 4+ project.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project houses components, services and models for accessing the Azavea Climate API in an Angular 8+ project.
 
 ## Build
 
@@ -15,10 +11,6 @@ Run `yarn run build:library` to build the project. The build artifacts will be s
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Publishing new versions
 
