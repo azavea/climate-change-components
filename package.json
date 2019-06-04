@@ -9,7 +9,6 @@
   "main": "./lib-dist/public_api.js",
   "types": "./lib-dist/public_api.d.js",
   "scripts": {
-    "build:library": "nglb --rootDir src/lib --outDir lib-dist --tsconfig tsconfig.lib.json",
     "test": "karma start --single-run",
     "lint": "ng lint --type-check",
     "e2e": "ng e2e"
@@ -54,7 +53,6 @@
     "@types/jasmine": "~2.5.54",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
-    "angular-library-builder": "^1.6.3",
     "codelyzer": "^5.0.1",
     "core-js": "2.x",
     "jasmine-core": "~2.6.2",
