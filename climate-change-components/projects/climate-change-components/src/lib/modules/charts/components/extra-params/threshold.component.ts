@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 import { Indicator } from '../../../api/models/indicator.model';
 import { PrecipitationUnits, TemperatureUnits } from '../../../shared/extra-params.constants';
@@ -66,13 +67,15 @@ export class ThresholdComponent implements AfterViewInit, OnInit {
             thresholdUnitCtl: [this.extraParams.threshold_units || this.defaultUnit, Validators.required]
         });
 
-        this.thresholdForm.valueChanges.debounceTime(700).subscribe(form => {
-            this.thresholdParamSelected.emit({
-                'threshold_comparator': form.comparatorCtl,
-                'threshold': form.thresholdCtl,
-                'threshold_units': form.thresholdUnitCtl
-            });
-        });
+        this.thresholdForm.valueChanges
+          .pipe(debounceTime(700))
+          .subscribe(form => {
+              this.thresholdParamSelected.emit({
+                  'threshold_comparator': form.comparatorCtl,
+                  'threshold': form.thresholdCtl,
+                  'threshold_units': form.thresholdUnitCtl
+              });
+          });
     }
 
     private evaluateVariable() {

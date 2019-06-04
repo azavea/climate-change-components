@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 import { HistoricRange } from '../../../api/models/historic-range.model';
 import { PercentileHistoricIndicatorQueryParams } from '../../../api/models/percentile-historic-indicator-query-params.model';
@@ -52,16 +53,18 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
             ]
         });
 
-        this.percentileHistoricForm.valueChanges.debounceTime(700).subscribe(form => {
-            // only accept percentiles [1, 100] as integers
-            const pctl = form.percentileCtl;
-            if (pctl > 100 || pctl < 1) { return; }
-            this.percentileHistoricParamSelected.emit({
-                'historic_range': form.historicCtl,
-                // TODO: #243 proper form feedback instead of rounding
-                'percentile': Math.round(pctl)
-            });
-        });
+        this.percentileHistoricForm.valueChanges
+          .pipe(debounceTime(700))
+          .subscribe(form => {
+              // only accept percentiles [1, 100] as integers
+              const pctl = form.percentileCtl;
+              if (pctl > 100 || pctl < 1) { return; }
+              this.percentileHistoricParamSelected.emit({
+                  'historic_range': form.historicCtl,
+                  // TODO: #243 proper form feedback instead of rounding
+                  'percentile': Math.round(pctl)
+              });
+          });
     }
 
     getHistoricRanges() {

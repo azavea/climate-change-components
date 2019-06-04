@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 import { HistoricRange } from '../../../api/models/historic-range.model';
 import { HistoricIndicatorQueryParams } from '../../../api/models/historic-indicator-query-params.model';
@@ -45,11 +46,13 @@ export class HistoricComponent implements AfterViewInit, OnInit {
             historicCtl: [this.extraParams.historic_range],
         });
 
-        this.historicForm.valueChanges.debounceTime(700).subscribe(form => {
-            this.historicParamSelected.emit({
-                'historic_range': form.historicCtl,
+        this.historicForm.valueChanges
+            .pipe(debounceTime(700))
+            .subscribe(form => {
+                this.historicParamSelected.emit({
+                    'historic_range': form.historicCtl,
+                });
             });
-        });
     }
 
     getHistoricRanges() {

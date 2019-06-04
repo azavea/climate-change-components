@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
 
 import { Indicator } from '../../../api/models/indicator.model';
 import { PercentileIndicatorQueryParams } from '../../../api/models/percentile-indicator-query-params.model';
@@ -42,14 +43,16 @@ export class PercentileComponent implements AfterViewInit, OnInit {
             percentileCtl: [this.extraParams.percentile || this.defaultPercentile, Validators.required]
         });
 
-        this.percentileForm.valueChanges.debounceTime(700).subscribe(form => {
-            // only accept percentiles [1, 100] as integers
-            const pctl = form.percentileCtl;
-            if (pctl > 100 || pctl < 1) { return; }
-            this.percentileParamSelected.emit({
-                // TODO: #243 proper form feedback instead of rounding
-                'percentile': Math.round(pctl)
-            });
-        });
+        this.percentileForm.valueChanges
+            .pipe(debounceTime(700))
+            .subscribe(form => {
+              // only accept percentiles [1, 100] as integers
+              const pctl = form.percentileCtl;
+              if (pctl > 100 || pctl < 1) { return; }
+              this.percentileParamSelected.emit({
+                  // TODO: #243 proper form feedback instead of rounding
+                  'percentile': Math.round(pctl)
+              });
+          });
     }
 }

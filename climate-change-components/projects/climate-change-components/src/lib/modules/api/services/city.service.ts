@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
-import { RequestOptions, URLSearchParams } from '@angular/http';
+import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from "rxjs/operators";
 
 import { City } from '../models/city.model';
 import { ApiHttp } from './api-http.interface';
@@ -19,7 +20,7 @@ export class CityService {
   public list(page?: Number, pageSize?: Number): Observable<City[]> {
     const url = this.apiHost + '/api/city/';
 
-    const searchParams: URLSearchParams = new URLSearchParams();
+    const searchParams: HttpParams = new HttpParams();
     if (page) {
       searchParams.append('page', page.toString());
     }
@@ -27,18 +28,16 @@ export class CityService {
       searchParams.append('pageSize', pageSize.toString());
     }
 
-    const requestOptions = new RequestOptions({ search: searchParams });
-    return this.apiHttp.get(url, requestOptions)
-        .map(resp => resp.features || [] as City[]);
+    return this.apiHttp.get(url, { params: { search: searchParams } })
+        .pipe(map(resp => resp.features || [] as City[]));
   }
 
   public search(text: string): Observable<City[]> {
     const url = this.apiHost + '/api/city/';
-    const searchParams: URLSearchParams = new URLSearchParams();
+    const searchParams: HttpParams = new HttpParams();
     searchParams.append('search', text);
-    const requestOptions = new RequestOptions({ search: searchParams });
-    return this.apiHttp.get(url, requestOptions)
-        .map(response => response.features || [] as City[]);
+    return this.apiHttp.get(url, { params: { search: searchParams } })
+        .pipe(map(response => response.features || [] as City[]));
   }
 
 }

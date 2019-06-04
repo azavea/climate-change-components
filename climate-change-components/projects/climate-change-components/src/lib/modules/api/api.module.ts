@@ -1,5 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { API_HOST, API_HTTP, ApiConfig } from './config';
 
@@ -13,7 +15,10 @@ import { ScenarioService } from './services/scenario.service';
 
 @NgModule({
   imports: [
-    CommonModule
+    BrowserModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   declarations: []
 })
