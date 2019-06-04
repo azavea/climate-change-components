@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 import { Scenario } from '../models/scenario.model';
 import { ApiHttp } from './api-http.interface';

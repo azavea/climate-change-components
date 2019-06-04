@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 import { HistoricRange } from '../models/historic-range.model';
 import { ApiHttp } from './api-http.interface';

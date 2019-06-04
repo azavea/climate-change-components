@@ -5,9 +5,10 @@
  *  will share a single subject. Avoids multiple calls for a result while the first is
  *  still pending.
  */
-import { Injectable } from '@angular/core';
+import { throwError as observableThrowError, of as observableOf, Observable, Subject } from 'rxjs';
 
-import { Observable, Subject } from 'rxjs/Rx';
+import { tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 
 interface CacheValue {
     expiry: number;
@@ -33,16 +34,16 @@ export class APICacheService {
 
   public get(key: string, fallback?: Observable<any>, maxAge: number = this.DEFAULT_MAX_AGE_S): Observable<any> | Subject<any> {
     if (this.hasValidValue(key)) {
-      return Observable.of(this.cache.get(key).value);
+      return observableOf(this.cache.get(key).value);
     }
 
     if (this.inFlight.has(key)) {
       return this.inFlight.get(key);
     } else if (fallback && fallback instanceof Observable) {
       this.inFlight.set(key, new Subject());
-      return fallback.do((value) => { this.set(key, value, maxAge); });
+      return fallback.pipe(tap((value) => { this.set(key, value, maxAge); }));
     } else {
-      return Observable.throw(`Requested key ${key} is not available in Cache`);
+      return observableThrowError(`Requested key ${key} is not available in Cache`);
     }
   }
 

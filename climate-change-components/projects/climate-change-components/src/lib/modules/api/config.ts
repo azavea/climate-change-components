@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { Request, RequestOptionsArgs, Response } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 
 export let API_HOST = new InjectionToken<string>('climate-change-components-api-host');

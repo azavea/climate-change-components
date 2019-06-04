@@ -1,7 +1,8 @@
 import { HttpParams, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import { Point } from 'geojson';
+import { of as observableOf, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { City } from '../models/city.model';
 import { Indicator } from '../models/indicator.model';
@@ -56,20 +57,20 @@ export class IndicatorService {
     const url = this.apiHost + '/api/indicator/';
     const request = this.apiHttp.get(url);
     const response = this.cache.get('climate.api.indicator.list', request);
-    return response.map(resp => (resp || []) as Indicator[]);
+    return response.pipe(map(resp => (resp || []) as Indicator[]));
   }
 
   private makeDataRequest(url: string, options: IndicatorRequestOpts) {
     const searchParams = this.requestOptsToSearchParams(options);
     if (!searchParams) {
-      return Observable.of({url: ''});
+      return observableOf({url: ''});
     }
-    return this.apiHttp.get(url, { params: { search: searchParams } }).map((resp: HttpResponse<Object>) => {
+    return this.apiHttp.get(url, { params: { search: searchParams } }).pipe(map((resp: HttpResponse<Object>) => {
       // Append the queried URL to the JSON representation of the response body.
       const result = resp.body;
       result['url'] = resp.url;
       return result;
-    });
+    }));
   }
 
   private requestOptsToSearchParams(options: IndicatorRequestOpts): HttpParams {

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { RequestOptions, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 
 import { City } from '../models/city.model';
 import { ApiHttp } from './api-http.interface';
