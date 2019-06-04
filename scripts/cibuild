@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+
+function usage() {
+    echo -n \
+    "Usage: $(basename "$0")
+    Run production build process."
+}
+
+if [[ -n "${GIT_COMMIT}" ]]; then
+    GIT_COMMIT="${GIT_COMMIT:0:7}"
+else
+    GIT_COMMIT="$(git rev-parse --short HEAD)"
+fi
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        # Clean out existing angular bundle before build
+        GIT_COMMIT="${GIT_COMMIT}" docker-compose \
+            -f docker-compose.yml \
+            -f docker-compose.test.yml run \
+            --rm --entrypoint "bash -c" lib "rm -rf dist/*"
+
+        GIT_COMMIT="${GIT_COMMIT}" docker-compose \
+            -f docker-compose.yml \
+            -f docker-compose.test.yml run \
+            --rm lib run build:prod
+    fi
+fi

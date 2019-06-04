@@ -1,0 +1,37 @@
+#!/bin/bash
+set -e
+
+if [[ -n "${GIT_COMMIT}" ]]; then
+    GIT_COMMIT="${GIT_COMMIT:0:7}"
+else
+    GIT_COMMIT="$(git rev-parse --short HEAD)"
+fi
+
+function usage() {
+    echo -ne \
+    "Usage: $(basename "$0")
+    Run tests and linter."
+}
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        # Build and tag container(s)
+        GIT_COMMIT=${GIT_COMMIT} docker-compose \
+           -f docker-compose.yml \
+           -f docker-compose.test.yml build
+
+        echo -e '\nRunning tests...'
+        GIT_COMMIT="${GIT_COMMIT}" docker-compose \
+            -f docker-compose.yml \
+            -f docker-compose.test.yml \
+            run --rm lib run test
+
+        echo -e '\nRunning linter...'
+        GIT_COMMIT="${GIT_COMMIT}" docker-compose \
+            -f docker-compose.yml \
+            -f docker-compose.test.yml \
+            run --rm lib run lint
+    fi
+fi

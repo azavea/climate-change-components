@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+if [[ -n ${CC_DEBUG} ]];
+then
+	set -x
+fi
+
+function usage() {
+    echo -n \
+    "Usage: $(basename "$0")
+    Builld vagrant VM."
+}
+
+DIR=$(dirname "${0}")
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+      # Build container
+        docker-compose build lib
+
+        # Update dependencies
+        docker-compose run --rm lib install --pure-lockfile
+    fi
+fi
