@@ -1,0 +1,4 @@
+version: '2'
+services:
+  lib:
+    image: "climate-change-components:${GIT_COMMIT}"

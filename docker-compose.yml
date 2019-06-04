@@ -1,0 +1,27 @@
+version: '2'
+services:
+  lib:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        NODE_VERSION: "12-stretch"
+    working_dir: /opt/app
+    environment:
+      - CHROME_BIN=/usr/bin/chromium
+    entrypoint: yarn
+    volumes:
+        - ./src/:/opt/app/src/
+        - ./lib-dist/:/opt/app/lib-dist/
+        - ./.angular-cli.json:/opt/app/.angular-cli.json
+        - ./browserslist:/opt/app/browserslist
+        - ./karma.conf.js:/opt/app/karma.conf.js
+        - ./package.json:/opt/app/package.json
+        - ./yarn.lock:/opt/app/yarn.lock
+        - ./protractor.conf.js:/opt/app/protractor.conf.js
+        - ./tsconfig.json:/opt/app/tsconfig.json
+        - ./tsconfig.lib.json:/opt/app/tsconfig.lib.json
+        - ./tslint.json:/opt/app/tslint.json
+    command:
+      - run
+      - serve:vm
