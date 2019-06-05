@@ -37,7 +37,7 @@ export class HistoricComponent implements AfterViewInit, OnInit {
         // Since valueChanges triggers initially before parent is ready, wait until
         // parent is ready here and trigger it to draw chart with extra parameters.
         this.historicParamSelected.emit({
-            'historic_range': this.historicForm.controls.historicCtl.value,
+            historic_range: this.historicForm.controls.historicCtl.value,
         });
     }
 
@@ -50,7 +50,7 @@ export class HistoricComponent implements AfterViewInit, OnInit {
             .pipe(debounceTime(700))
             .subscribe(form => {
                 this.historicParamSelected.emit({
-                    'historic_range': form.historicCtl,
+                    historic_range: form.historicCtl,
                 });
             });
     }

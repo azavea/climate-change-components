@@ -34,7 +34,7 @@ export class PercentileComponent implements AfterViewInit, OnInit {
         // Since valueChanges triggers initially before parent is ready, wait until
         // parent is ready here and trigger it to draw chart with extra parameters.
         this.percentileParamSelected.emit({
-            'percentile': this.percentileForm.controls.percentileCtl.value
+            percentile: this.percentileForm.controls.percentileCtl.value
         });
     }
 
@@ -51,7 +51,7 @@ export class PercentileComponent implements AfterViewInit, OnInit {
               if (pctl > 100 || pctl < 1) { return; }
               this.percentileParamSelected.emit({
                   // TODO: #243 proper form feedback instead of rounding
-                  'percentile': Math.round(pctl)
+                  percentile: Math.round(pctl)
               });
           });
     }

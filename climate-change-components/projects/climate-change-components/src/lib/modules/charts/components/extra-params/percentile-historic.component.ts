@@ -40,8 +40,8 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
         // Since valueChanges triggers initially before parent is ready, wait until
         // parent is ready here and trigger it to draw chart with extra parameters.
         this.percentileHistoricParamSelected.emit({
-            'percentile': this.percentileHistoricForm.controls.percentileCtl.value,
-            'historic_range': this.percentileHistoricForm.controls.historicCtl.value,
+            percentile: this.percentileHistoricForm.controls.percentileCtl.value,
+            historic_range: this.percentileHistoricForm.controls.historicCtl.value,
         });
     }
 
@@ -60,9 +60,9 @@ export class PercentileHistoricComponent implements AfterViewInit, OnInit {
               const pctl = form.percentileCtl;
               if (pctl > 100 || pctl < 1) { return; }
               this.percentileHistoricParamSelected.emit({
-                  'historic_range': form.historicCtl,
+                  historic_range: form.historicCtl,
                   // TODO: #243 proper form feedback instead of rounding
-                  'percentile': Math.round(pctl)
+                  percentile: Math.round(pctl)
               });
           });
     }

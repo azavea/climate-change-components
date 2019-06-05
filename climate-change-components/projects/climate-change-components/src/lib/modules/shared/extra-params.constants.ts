@@ -33,15 +33,15 @@ const extraParamsIndicatorNames = [].concat(thresholdIndicatorNames,
                                             historicIndicatorNames);
 
 export const TemperatureUnits: any[] = [
-    {'key': 'K', 'label': 'Kelvin'},
-    {'key': 'F', 'label': 'Farenheit'},
-    {'key': 'C', 'label': 'Centigrade'}
+    {key: 'K', label: 'Kelvin'},
+    {key: 'F', label: 'Farenheit'},
+    {key: 'C', label: 'Centigrade'}
  ];
 
 export const PrecipitationUnits: any[] = [
-    {'key': 'mm/day', 'label': 'millimeters per day'},
-     {'key': 'in/day', 'label': 'inches per day'},
-     {'key': 'kg/m^2/s', 'label': 'kg/m^2/s'}
+    {key: 'mm/day', label: 'millimeters per day'},
+     {key: 'in/day', label: 'inches per day'},
+     {key: 'kg/m^2/s', label: 'kg/m^2/s'}
 ];
 
 export function isBasetempIndicator(indicatorName: string): boolean {

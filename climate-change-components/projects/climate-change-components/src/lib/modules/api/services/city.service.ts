@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from "rxjs/operators";
+import { map } from 'rxjs/operators';
 
 import { City } from '../models/city.model';
 import { ApiHttp } from './api-http.interface';

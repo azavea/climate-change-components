@@ -23,10 +23,10 @@ export class ThresholdComponent implements AfterViewInit, OnInit {
     thresholdForm: FormGroup;
 
     private thresholdComparators: any[] = [
-        {'key': 'gte', 'label': 'greater than or equal to'},
-        {'key': 'lte', 'label': 'less than or equal to'},
-        {'key': 'gt', 'label': 'greater than'},
-        {'key': 'lt', 'label': 'less than'}
+        {key: 'gte', label: 'greater than or equal to'},
+        {key: 'lte', label: 'less than or equal to'},
+        {key: 'gt', label: 'greater than'},
+        {key: 'lt', label: 'less than'}
     ];
 
     private temperatureUnits = TemperatureUnits;
@@ -53,9 +53,9 @@ export class ThresholdComponent implements AfterViewInit, OnInit {
         // Since valueChanges triggers initially before parent is ready, wait until
         // parent is ready here and trigger it to draw chart with extra parameters.
         this.thresholdParamSelected.emit({
-            'threshold_comparator': this.thresholdForm.controls.comparatorCtl.value,
-            'threshold': this.thresholdForm.controls.thresholdCtl.value,
-            'threshold_units': this.thresholdForm.controls.thresholdUnitCtl.value
+            threshold_comparator: this.thresholdForm.controls.comparatorCtl.value,
+            threshold: this.thresholdForm.controls.thresholdCtl.value,
+            threshold_units: this.thresholdForm.controls.thresholdUnitCtl.value
         });
     }
 
@@ -71,9 +71,9 @@ export class ThresholdComponent implements AfterViewInit, OnInit {
           .pipe(debounceTime(700))
           .subscribe(form => {
               this.thresholdParamSelected.emit({
-                  'threshold_comparator': form.comparatorCtl,
-                  'threshold': form.thresholdCtl,
-                  'threshold_units': form.thresholdUnitCtl
+                  threshold_comparator: form.comparatorCtl,
+                  threshold: form.thresholdCtl,
+                  threshold_units: form.thresholdUnitCtl
               });
           });
     }

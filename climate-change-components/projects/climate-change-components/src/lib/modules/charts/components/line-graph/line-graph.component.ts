@@ -106,12 +106,12 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
   private filterData(): void {
     // Preserves parent data by fresh copying indicator data that will undergo processing
     if (this.data && this.data[0] && this.data[0].data) {
-      this.extractedData = cloneDeep(this.data[0]['data']);
+      this.extractedData = cloneDeep(this.data[0].data);
     } else {
       this.extractedData = [];
     }
     // Remove empty day in non-leap years (affects only daily data)
-    if (this.extractedData[365] && this.extractedData[365]['date'] == null) {
+    if (this.extractedData[365] && this.extractedData[365].date == null) {
       this.extractedData.pop();
     }
     this.timeFormat = this.data[0].time_format;
@@ -212,7 +212,7 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
 
   /* Draw line */
   private drawAvgLine(): void {
-    const data = this.extractedData.map(d => ({'date': d.date, 'value': d.values.avg }));
+    const data = this.extractedData.map(d => ({date: d.date, value: d.values.avg }));
     this.drawLine(data, 'line');
   }
 
@@ -222,9 +222,9 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
       .y0(d => this.yScale(d.min))
       .y1(d => this.yScale(d.max));
 
-    const minMaxData = this.extractedData.map(d => ({'date': d.date,
-                                                     'min': d.values.min,
-                                                     'max': d.values.max}));
+    const minMaxData = this.extractedData.map(d => ({date: d.date,
+                                                     min: d.values.min,
+                                                     max: d.values.max}));
 
     // Draw min/max area
     this.svg.append('path')

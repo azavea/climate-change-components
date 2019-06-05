@@ -52,7 +52,7 @@ export class APICacheService {
   }
 
   public set(key: string, value: Observable<any>, maxAge: number = this.DEFAULT_MAX_AGE_S) {
-    this.cache.set(key, { value: value, expiry: Date.now() + maxAge });
+    this.cache.set(key, { value, expiry: Date.now() + maxAge });
     this.notifyInFlight(key, value);
   }
 

@@ -16,8 +16,8 @@ import * as D3 from 'd3';
 export class ChartService {
 
     private timeOptions = {
-          'yearly': '%Y',
-          'monthly': '%Y-%m'
+          yearly: '%Y',
+          monthly: '%Y-%m'
         };
 
     constructor() {}
@@ -50,17 +50,17 @@ export class ChartService {
 
             if (indicator && !i[indicator.name]) {
                 i[indicator.name] = {
-                    'indicator': indicator,
-                    'data': [],
-                    'time_aggregation': obj.time_aggregation,
-                    'time_format': timeFormat
+                    indicator: indicator,
+                    data: [],
+                    time_aggregation: obj.time_aggregation,
+                    time_format: timeFormat
                 };
             }
 
             _.each(obj.data, (values, key) => {
                 i[indicator.name].data.push({
-                    'date': parseTime(key),
-                    'values': values
+                    date: parseTime(key),
+                    values: values
                 } as MultiDataPoint);
             });
 

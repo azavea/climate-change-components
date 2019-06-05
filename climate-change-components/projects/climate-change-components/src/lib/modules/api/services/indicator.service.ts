@@ -68,7 +68,7 @@ export class IndicatorService {
     return this.apiHttp.get(url, { params: { search: searchParams } }).pipe(map((resp: HttpResponse<Object>) => {
       // Append the queried URL to the JSON representation of the response body.
       const result = resp.body;
-      result['url'] = resp.url;
+      result.url = resp.url;
       return result;
     }));
   }

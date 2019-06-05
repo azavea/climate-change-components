@@ -38,8 +38,8 @@ export class BasetempComponent implements AfterViewInit, OnInit {
         // Since valueChanges triggers initially before parent is ready, wait until
         // parent is ready here and trigger it to draw chart with extra parameters.
         this.basetempParamSelected.emit({
-            'basetemp': this.basetempForm.controls.basetempCtl.value,
-            'basetemp_units': this.basetempForm.controls.basetempUnitCtl.value
+            basetemp: this.basetempForm.controls.basetempCtl.value,
+            basetemp_units: this.basetempForm.controls.basetempUnitCtl.value
         });
     }
 
@@ -53,8 +53,8 @@ export class BasetempComponent implements AfterViewInit, OnInit {
             .pipe(debounceTime(700))
             .subscribe(form => {
                 this.basetempParamSelected.emit({
-                    'basetemp': form.basetempCtl,
-                    'basetemp_units': form.basetempUnitCtl
+                    basetemp: form.basetempCtl,
+                    basetemp_units: form.basetempUnitCtl
                 });
             });
     }

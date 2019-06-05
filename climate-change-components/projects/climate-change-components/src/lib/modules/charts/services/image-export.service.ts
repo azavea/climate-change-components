@@ -15,7 +15,7 @@ export class ImageExportService {
     private chartOptions(parentSelector: string) {
         return {
             backgroundColor: 'white',
-            selectorRemap: function(selector) {
+            selectorRemap(selector) {
                 // find CSS selectors mapped to parent chart
                 return selector.replace(parentSelector, '');
             }
