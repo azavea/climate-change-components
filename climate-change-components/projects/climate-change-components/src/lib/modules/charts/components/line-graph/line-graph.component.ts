@@ -14,9 +14,9 @@ import { DataPoint } from '../../../api/models/data-point.model';
 import { Indicator } from '../../../api/models/indicator.model';
 import { MultiDataPoint } from '../../../api/models/multi-data-point.model';
 
-import * as D3 from 'd3';
-import * as cloneDeep from 'lodash.clonedeep';
-import * as $ from 'jquery';
+import D3 from 'd3';
+import { cloneDeep } from 'lodash';
+import $ from 'jquery';
 
 /*
 * Line graph component
@@ -66,7 +66,7 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
     this.host = D3.select(this.element.nativeElement);
   }
 
-  @HostListener('window:resize', ['$event'])
+  @HostListener('window:resize', [])
   onResize() {
     this.ngOnChanges();
   }
