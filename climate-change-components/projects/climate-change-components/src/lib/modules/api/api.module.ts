@@ -15,10 +15,6 @@ import { ScenarioService } from './services/scenario.service';
 
 @NgModule({
   imports: [
-    BrowserModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
   ],
   declarations: []
 })
