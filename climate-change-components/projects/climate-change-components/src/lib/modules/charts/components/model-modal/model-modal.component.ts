@@ -14,7 +14,7 @@ import { ModalOptions, ModalDirective } from 'ngx-bootstrap/modal';
             [config]="bsModalOptions"
             [dataset]="yourDataset"
             [models]="yourSelectedModels"
-            (onModelsChanged)="modelsChanged($event)">
+            (modelsChanged)=onModelsChanged($event)">
 */
 
 @Component({
@@ -27,7 +27,7 @@ export class ModelModalComponent implements OnInit {
     @Input() dataset: Dataset;
     @Input() models: ClimateModel[];
 
-    @Output() onModelsChanged = new EventEmitter<ClimateModel[]>();
+    @Output() modelsChanged = new EventEmitter<ClimateModel[]>();
 
     public buttonText: string;
     public climateModels: ClimateModel[];
@@ -35,7 +35,7 @@ export class ModelModalComponent implements OnInit {
     public smModal: any;
     public readonly DEFAULT_MODAL_OPTIONS = { backdrop: 'static' };
 
-    @ViewChild(ModalDirective) modal: ModalDirective;
+    @ViewChild(ModalDirective, { static: false }) modal: ModalDirective;
 
     constructor(private climateModelService: ClimateModelService) {}
 
@@ -73,7 +73,7 @@ export class ModelModalComponent implements OnInit {
 
         this.disableClimateModels();
         this.models = this.filterSelectedClimateModels();
-        this.onModelsChanged.emit(this.models);
+        this.modelsChanged.emit(this.models);
         this.updateButtonText();
     }
 

@@ -32,7 +32,7 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
 
   @Input() public data: ChartData[];
   @Input() public indicator: Indicator;
-  @Input() public hover: Boolean;
+  @Input() public hover: boolean;
   @Input() public unit: string;
 
   public extractedData: Array<MultiDataPoint>;
@@ -141,7 +141,7 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
   // Set axis and line scales
   private setLineScales(): void {
     // Sort data by date ascending
-    this.extractedData.sort(function(a, b) { return +a.date - +b.date; });
+    this.extractedData.sort((a, b) => +a.date - +b.date);
     // Parse out avg data for ease of use later
     this.yData = this.extractedData.map(d => d.values.avg);
 
@@ -286,11 +286,11 @@ export class LineGraphComponent implements OnChanges, AfterContentInit {
 
     // Default round down position to existing time point
     // Note the +unary operator before dates. Converts dates to numbers to quell tslinter
-    const bisectDate = D3.bisector(function(datum) { return datum.date; }).left;
-    const x0 = this.xScale.invert(xPos),
-      i = +bisectDate(this.extractedData, x0, 1),
-      d0 = this.extractedData[i - 1],
-      d1 = this.extractedData[i];
+    const bisectDate = D3.bisector(datum => datum.date).left;
+    const x0 = this.xScale.invert(xPos);
+    const i = +bisectDate(this.extractedData, x0, 1);
+    const d0 = this.extractedData[i - 1];
+    const d1 = this.extractedData[i];
     let d: number;
 
     // Prevent error leaving graph

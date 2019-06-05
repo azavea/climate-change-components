@@ -65,7 +65,7 @@ export class IndicatorService {
     if (!searchParams) {
       return observableOf({url: ''});
     }
-    return this.apiHttp.get(url, { params: { search: searchParams } }).pipe(map((resp: HttpResponse<Object>) => {
+    return this.apiHttp.get(url, { params: { search: searchParams } }).pipe(map((resp: HttpResponse<any>) => {
       // Append the queried URL to the JSON representation of the response body.
       const result = resp.body;
       result.url = resp.url;

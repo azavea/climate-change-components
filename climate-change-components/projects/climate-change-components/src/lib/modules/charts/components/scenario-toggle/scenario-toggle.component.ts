@@ -8,7 +8,8 @@ import { ScenarioService } from '../../../api/services/scenario.service';
     -- Requires project input
     Expected use:
         <ccc-scenario-toggle
-            [scenario]="yourScenario">
+            [scenario]="yourScenario"
+            (scenarioSelected)="onScenarioSelected($event)">
 */
 
 @Component({
@@ -18,7 +19,7 @@ import { ScenarioService } from '../../../api/services/scenario.service';
 export class ScenarioToggleComponent implements OnInit {
 
     @Input() scenario: Scenario;
-    @Output() onScenarioSelected = new EventEmitter<Scenario>();
+    @Output() scenarioSelected = new EventEmitter<Scenario>();
     public scenarios: Scenario[] = [];
     private DEFAULT_SCENARIO_NAME = 'RCP85';
     private VALID_SCENARIOS = ['RCP85', 'RCP45'];
@@ -34,7 +35,7 @@ export class ScenarioToggleComponent implements OnInit {
         if (event) {
             event.preventDefault();
         }
-        this.onScenarioSelected.emit(scenario);
+        this.scenarioSelected.emit(scenario);
     }
 
     private getScenarios() {

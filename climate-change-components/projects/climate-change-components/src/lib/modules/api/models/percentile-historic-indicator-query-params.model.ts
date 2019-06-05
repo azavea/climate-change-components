@@ -5,7 +5,7 @@ import {
 import { HistoricPercentileParam } from './historic-percentile-param.enum';
 
 export interface PercentileHistoricIndicatorQueryParams extends IndicatorQueryParams {
-  historic_range: Number;
+  historic_range: number;
   percentile: HistoricPercentileParam;
 }
 

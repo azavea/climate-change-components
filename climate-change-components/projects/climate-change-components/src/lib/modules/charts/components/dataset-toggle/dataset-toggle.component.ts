@@ -13,7 +13,7 @@ import { DatasetService } from '../../../api/services/dataset.service';
             [city]="selectedCity"
             [dataset]="yourDataset"
             [models]="selectedModels"
-            (onDatasetSelected)="datasetSelected($event)">
+            (datasetSelected)="onDatasetSelected($event)">
 */
 
 @Component({
@@ -25,7 +25,7 @@ export class DatasetToggleComponent implements OnInit {
     @Input() city: City;
     @Input() dataset: Dataset;
     @Input() models: ClimateModel[];
-    @Output() onDatasetSelected = new EventEmitter<Dataset>();
+    @Output() datasetSelected = new EventEmitter<Dataset>();
     public datasets: Dataset[] = [];
     private DEFAULT_DATASET_NAME = 'NEX-GDDP';
 
@@ -47,7 +47,7 @@ export class DatasetToggleComponent implements OnInit {
         if (event) {
             event.preventDefault();
         }
-        this.onDatasetSelected.emit(dataset);
+        this.datasetSelected.emit(dataset);
     }
 
     // set to default, or first valid option for the selected city

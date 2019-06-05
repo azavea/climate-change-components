@@ -50,7 +50,7 @@ export class ChartService {
 
             if (indicator && !i[indicator.name]) {
                 i[indicator.name] = {
-                    indicator: indicator,
+                    indicator,
                     data: [],
                     time_aggregation: obj.time_aggregation,
                     time_format: timeFormat
@@ -60,7 +60,7 @@ export class ChartService {
             _.each(obj.data, (values, key) => {
                 i[indicator.name].data.push({
                     date: parseTime(key),
-                    values: values
+                    values
                 } as MultiDataPoint);
             });
 

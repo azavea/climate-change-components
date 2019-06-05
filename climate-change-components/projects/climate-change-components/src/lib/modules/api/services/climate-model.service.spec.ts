@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Rx';
+import { of } from 'rxjs';
 
 import { ClimateModelService } from './climate-model.service';
 import { APICacheService } from './api-cache.service';
@@ -17,8 +17,7 @@ describe('ClimateModelService', () => {
     beforeEach(() => {
         apiHttpStub = {
             /* tslint:disable-next-line:max-line-length */
-            get: jasmine.createSpy('get').and.returnValue(
-                Observable.of({json: () => testResponse}))
+            get: jasmine.createSpy('get').and.returnValue(of({json: () => testResponse}))
         };
         cache = new APICacheService();
         service = new ClimateModelService('http://example.com', apiHttpStub, cache);

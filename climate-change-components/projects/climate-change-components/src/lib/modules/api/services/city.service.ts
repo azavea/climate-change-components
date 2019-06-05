@@ -17,7 +17,7 @@ export class CityService {
   constructor(@Inject(API_HOST) private apiHost: string,
               @Inject(API_HTTP) private apiHttp: ApiHttp) {}
 
-  public list(page?: Number, pageSize?: Number): Observable<City[]> {
+  public list(page?: number, pageSize?: number): Observable<City[]> {
     const url = this.apiHost + '/api/city/';
 
     const searchParams: HttpParams = new HttpParams();

@@ -4,12 +4,12 @@ export class Chart {
   indicator: Indicator;
   unit: string;
 
-  static fromJSON(object: Object) {
-    return new Chart(object);
+  static fromJSON(obj: object) {
+    return new Chart(obj);
   }
 
-  constructor(object: Object) {
-    Object.assign(this, object);
+  constructor(obj: object) {
+    Object.assign(this, obj);
   }
 
   public toJSON() {
