@@ -24,4 +24,4 @@ services:
         - ./tslint.json:/opt/app/tslint.json
     command:
       - run
-      - serve:vm
+      - watch
