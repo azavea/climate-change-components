@@ -20,13 +20,9 @@
     ],
     "paths": {
       "climate-change-components": [
-        "dist/climate-change-components",
-        "dist/climate-change-components",
         "dist/climate-change-components"
       ],
       "climate-change-components/*": [
-        "dist/climate-change-components/*",
-        "dist/climate-change-components/*",
         "dist/climate-change-components/*"
       ],
       "@angular/*": ["../node_modules/@angular/*"]
