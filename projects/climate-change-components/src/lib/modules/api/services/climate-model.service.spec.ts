@@ -17,7 +17,7 @@ describe('ClimateModelService', () => {
     beforeEach(() => {
         apiHttpStub = {
             /* tslint:disable-next-line:max-line-length */
-            get: jasmine.createSpy('get').and.returnValue(of({json: () => testResponse}))
+            get: jasmine.createSpy('get').and.returnValue(of(testResponse))
         };
         cache = new APICacheService();
         service = new ClimateModelService('http://example.com', apiHttpStub, cache);
