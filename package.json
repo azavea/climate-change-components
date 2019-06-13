@@ -6,11 +6,11 @@
     "type": "git",
     "url": "https://github.com/azavea/climate-change-components.git"
   },
-  "main": "./lib-dist/public_api.js",
-  "types": "./lib-dist/public_api.d.js",
+  "main": "projects/climate-change-components/src/public_api.ts",
   "scripts": {
     "ng": "ng",
     "build": "ng build",
+    "build:library": "ng-packagr -p projects/climate-change-components/package.json",
     "watch": "ng build --watch",
     "test": "ng test",
     "lint": "ng lint",
