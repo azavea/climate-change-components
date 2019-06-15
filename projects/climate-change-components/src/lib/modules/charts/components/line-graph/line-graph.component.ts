@@ -14,7 +14,7 @@ import { DataPoint } from '../../../api/models/data-point.model';
 import { Indicator } from '../../../api/models/indicator.model';
 import { MultiDataPoint } from '../../../api/models/multi-data-point.model';
 
-import D3 from 'd3';
+import * as D3 from 'd3';
 import { cloneDeep } from 'lodash';
 import $ from 'jquery';
 

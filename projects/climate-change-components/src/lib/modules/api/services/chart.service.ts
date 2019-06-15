@@ -6,7 +6,7 @@ import { MultiDataPoint } from '../models/multi-data-point.model';
 
 import moment from 'moment/src/moment';
 import _ from 'lodash';
-import D3 from 'd3';
+import * as D3 from 'd3';
 
 /*
  * Chart Service
