@@ -6,7 +6,10 @@
     "type": "git",
     "url": "https://github.com/azavea/climate-change-components.git"
   },
-  "main": "projects/climate-change-components/src/public_api.ts",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/climate-change-components/climate-change-components.d.ts",
   "scripts": {
     "ng": "ng",
     "build": "ng build",

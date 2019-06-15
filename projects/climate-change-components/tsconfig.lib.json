@@ -2,6 +2,12 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
+    "paths": {
+      "lib": [
+        "../../dist/climate-change-components",
+        "../../dist/climate-change-components/*"
+      ]
+    },
     "target": "es2015",
     "declaration": true,
     "inlineSources": true,
