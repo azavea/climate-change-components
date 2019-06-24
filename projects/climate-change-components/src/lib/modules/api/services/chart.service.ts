@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { ChartData } from '../models/chart-data.model';
 import { MultiDataPoint } from '../models/multi-data-point.model';
 
-import moment from 'moment/src/moment';
+import * as moment from 'moment';
 import _ from 'lodash';
 import * as D3 from 'd3';
 
