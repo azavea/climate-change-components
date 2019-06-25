@@ -10,7 +10,7 @@ import { APICacheService } from './api-cache.service';
  * Dataset Service
  * Returns datasets from API
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class DatasetService {
 
   constructor(@Inject(API_HOST) private apiHost: string,

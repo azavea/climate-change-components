@@ -10,7 +10,7 @@ import { APICacheService } from './api-cache.service';
  * Scenario Service
  * Returns scenarios from API
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ScenarioService {
 
   constructor(@Inject(API_HOST) private apiHost: string,

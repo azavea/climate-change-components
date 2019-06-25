@@ -12,7 +12,7 @@ import * as D3 from 'd3';
  * Chart Service
  * Data management and operations for charts
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ChartService {
 
     private timeOptions = {

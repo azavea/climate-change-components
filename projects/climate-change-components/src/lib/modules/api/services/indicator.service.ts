@@ -34,7 +34,7 @@ import { APICacheService } from './api-cache.service';
  * Indicator Service
  * Returns climate indicators. Used by the sidebar and to retrieve detail data for charts.
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class IndicatorService {
 
   constructor(@Inject(API_HOST) private apiHost: string,

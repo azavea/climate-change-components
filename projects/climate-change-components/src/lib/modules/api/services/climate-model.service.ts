@@ -10,7 +10,7 @@ import { APICacheService } from './api-cache.service';
  * Climate Model Service
  * Returns climate models from API
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ClimateModelService {
 
   constructor(@Inject(API_HOST) private apiHost: string,

@@ -11,7 +11,7 @@ import { API_HOST, API_HTTP } from '../config';
  * City Service
  * Returns cities from API
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class CityService {
 
   constructor(@Inject(API_HOST) private apiHost: string,

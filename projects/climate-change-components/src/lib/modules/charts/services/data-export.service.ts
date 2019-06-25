@@ -4,7 +4,7 @@ import * as FileSaver from 'file-saver';
 /*
  * Generates JSON from data
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class DataExportService {
 
     public downloadAsJSON(filename: string, data: any): void {

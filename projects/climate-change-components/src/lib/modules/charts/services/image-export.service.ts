@@ -4,7 +4,7 @@ import * as SaveSvg from 'save-svg-as-png';
 /*
  * Generates image of D3 chart SVG for download
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ImageExportService {
 
     /**

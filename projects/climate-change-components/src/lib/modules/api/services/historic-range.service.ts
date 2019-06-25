@@ -10,7 +10,7 @@ import { APICacheService } from './api-cache.service';
  * Historic Range Service
  * Returns available historic ranges from API
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class HistoricRangeService {
 
   constructor(@Inject(API_HOST) private apiHost: string,

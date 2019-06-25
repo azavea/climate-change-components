@@ -15,7 +15,7 @@ interface CacheValue {
     value: any;
 }
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class APICacheService {
 
   public readonly DEFAULT_MAX_AGE_S = 60 * 60 * 24;
