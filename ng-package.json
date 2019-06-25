@@ -8,7 +8,7 @@
       "file-saver": "FileSaver",
       "jquery": "$",
       "lodash": "_",
-      "moment/src/moment": "moment",
+      "moment": "moment",
       "ngx-bootstrap": "ngxBootstrap",
       "ngx-bootstrap/modal": "modal",
       "save-svg-as-png": "SaveSvg"
